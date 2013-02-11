@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9FD86DC1-1DFB-4C1D-9C5E-B16B178EE197}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DotNetCoordsPhone</RootNamespace>
+    <AssemblyName>DotNetCoordsPhone</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <TargetFrameworkProfile>WindowsPhone</TargetFrameworkProfile>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Net" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CoordinateSystem.cs" />
+    <Compile Include="Datum\Datum.cs" />
+    <Compile Include="Datum\ETRF89Datum.cs" />
+    <Compile Include="Datum\Ireland1965Datum.cs" />
+    <Compile Include="Datum\nad27\NAD27AlaskaDatum.cs" />
+    <Compile Include="Datum\nad27\NAD27AlbertaBritishColumbiaDatum.cs" />
+    <Compile Include="Datum\nad27\NAD27AleutianEastDatum.cs" />
+    <Compile Include="Datum\nad27\NAD27AleutianWestDatum.cs" />
+    <Compile Include="Datum\nad27\NAD27BahamasDatum.cs" />
+    <Compile Include="Datum\nad27\NAD27CanadaDatum.cs" />
+    <Compile Include="Datum\nad27\NAD27CanadaEastDatum.cs" />
+    <Compile Include="Datum\nad27\NAD27CanadaManitobaOntarioDatum.cs" />
+    <Compile Include="Datum\nad27\NAD27CanadaNWTerritoryDatum.cs" />
+    <Compile Include="Datum\nad27\NAD27CanadaYukonDatum.cs" />
+    <Compile Include="Datum\nad27\NAD27CanalZoneDatum.cs" />
+    <Compile Include="Datum\nad27\NAD27CaribbeanDatum.cs" />
+    <Compile Include="Datum\nad27\NAD27CentralAmericaDatum.cs" />
+    <Compile Include="Datum\nad27\NAD27ContiguousUSDatum.cs" />
+    <Compile Include="Datum\nad27\NAD27CubaDatum.cs" />
+    <Compile Include="Datum\nad27\NAD27EasternUSDatum.cs" />
+    <Compile Include="Datum\nad27\NAD27GreenlandDatum.cs" />
+    <Compile Include="Datum\nad27\NAD27MexicoDatum.cs" />
+    <Compile Include="Datum\nad27\NAD27SanSalvadorDatum.cs" />
+    <Compile Include="Datum\nad27\NAD27WesternUSDatum.cs" />
+    <Compile Include="Datum\OSGB36Datum.cs" />
+    <Compile Include="Datum\WGS84Datum.cs" />
+    <Compile Include="ECEFRef.cs" />
+    <Compile Include="Ellipsoid\Airy1830Ellipsoid.cs" />
+    <Compile Include="Ellipsoid\AustralianNational1966Ellipsoid.cs" />
+    <Compile Include="Ellipsoid\Bessel1841Ellipsoid.cs" />
+    <Compile Include="Ellipsoid\Clarke1866Ellipsoid.cs" />
+    <Compile Include="Ellipsoid\Clarke1880Ellipsoid.cs" />
+    <Compile Include="Ellipsoid\Ellipsoid.cs" />
+    <Compile Include="Ellipsoid\EverestEllipsoid.cs" />
+    <Compile Include="Ellipsoid\Fischer1960Ellipsoid.cs" />
+    <Compile Include="Ellipsoid\Fischer1968Ellipsoid.cs" />
+    <Compile Include="Ellipsoid\GRS67Ellipsoid.cs" />
+    <Compile Include="Ellipsoid\GRS75Ellipsoid.cs" />
+    <Compile Include="Ellipsoid\GRS80Ellipsoid.cs" />
+    <Compile Include="Ellipsoid\Hayford1910Ellipsoid.cs" />
+    <Compile Include="Ellipsoid\Helmert1906Ellipsoid.cs" />
+    <Compile Include="Ellipsoid\Hough1956Ellipsoid.cs" />
+    <Compile Include="Ellipsoid\IERS1989Ellipsoid.cs" />
+    <Compile Include="Ellipsoid\InternationalEllipsoid.cs" />
+    <Compile Include="Ellipsoid\Krassovsky1940Ellipsoid.cs" />
+    <Compile Include="Ellipsoid\ModifiedAiryEllipsoid.cs" />
+    <Compile Include="Ellipsoid\ModifiedEverestEllipsoid.cs" />
+    <Compile Include="Ellipsoid\NewInternational1967Ellipsoid.cs" />
+    <Compile Include="Ellipsoid\SouthAmerican1969Ellipsoid.cs" />
+    <Compile Include="Ellipsoid\WGS60Ellipsoid.cs" />
+    <Compile Include="Ellipsoid\WGS66Ellipsoid.cs" />
+    <Compile Include="Ellipsoid\WGS72Ellipsoid.cs" />
+    <Compile Include="Ellipsoid\WGS84Ellipsoid.cs" />
+    <Compile Include="IrishRef.cs" />
+    <Compile Include="LatLng.cs" />
+    <Compile Include="MGRSRef.cs" />
+    <Compile Include="NotDefinedOnUTMGridException.cs" />
+    <Compile Include="OSRef.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util.cs" />
+    <Compile Include="UTMRef.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <ProjectExtensions />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
