@@ -1,7 +1,6 @@
 using System;
 
 using DotNetCoords.Datum;
-using System.Text.RegularExpressions;
 
 namespace DotNetCoords
 {
@@ -320,6 +319,8 @@ namespace DotNetCoords
     /// <summary>
     /// Create a new MGRS reference object from the given String. Must be correctly
     /// formatted otherwise an ArgumentException will be thrown.
+    ///
+    /// Matching regex: (\d{1,2})([A-Z])([A-Z])([A-Z])(\d{2,10})
     /// </summary>
     /// <param name="gridRef">a string to create an MGRS reference from.</param>
     /// <param name="isBessel">True if the parameters represent an MGRS reference using the
@@ -328,30 +329,34 @@ namespace DotNetCoords
     /// <exception cref="ArgumentException">if the given String is not correctly formatted.</exception>
     public MGRSRef(string gridRef, bool isBessel) : base(WGS84Datum.Instance) 
     {
-      //throw new NotImplementedException();
-      Regex regex = new Regex(@"(\d{1,2})([A-Z])([A-Z])([A-Z])(\d{2,10})");
-      Match match = regex.Match(gridRef);
-
-      if (!match.Success)
-        throw new ArgumentException("Invalid MGRS reference (" + gridRef + ")");
-
-      this.utmZoneNumber = int.Parse(match.Groups[1].Value);
-      this.utmZoneChar = match.Groups[2].Value[0];
-      this.eastingID = match.Groups[3].Value[0];
-      this.northingID = match.Groups[4].Value[0];
-      string en = match.Groups[5].Value;
-      int enl = en.Length;
-      if (enl % 2 != 0)
+      if (String.IsNullOrEmpty(gridRef) || gridRef.Length < 6)
+          throw new ArgumentException("Invalid MGRS reference (" + gridRef + ")", "gridRef");
+      int begin = 0;
+      int length = 1;
+      char[] gridRefArray = gridRef.ToCharArray();
+      if (Util.IsDigit(gridRefArray[1]))
+          length = 2;
+      this.utmZoneNumber = int.Parse(gridRef.Substring(begin, length));
+      begin += length;
+      if (!(Util.IsUpperLetter(gridRefArray[begin]) &&
+          Util.IsUpperLetter(gridRefArray[begin + 1]) &&
+          Util.IsUpperLetter(gridRefArray[begin + 2])))
+           throw new ArgumentException("Invalid MGRS reference (" + gridRef + ")", "gridRef");
+      this.utmZoneChar = gridRefArray[begin];
+      this.eastingID = gridRefArray[begin + 1];
+      this.northingID = gridRefArray[begin + 2];
+      begin += 3;
+      for (length = 0; begin + length < gridRefArray.Length; length++)
       {
-        throw new ArgumentException("Invalid MGRS reference (" + gridRef + ")");
+          if (!Util.IsDigit(gridRefArray[begin + length]))
+              throw new ArgumentException("Invalid MGRS reference (" + gridRef + ")", "gridRef");
       }
-      else
-      {
-        this.precision = (Precision)Math.Pow(10, 5 - (enl / 2));
-        this.easting =
-            int.Parse(en.Substring(0, enl / 2)) * (int)this.precision;
-        this.northing = int.Parse(en.Substring(enl / 2)) * (int)this.precision;
-      }
+      if (length < 2 || length % 2 != 0)
+        throw new ArgumentException("Invalid MGRS reference (" + gridRef + ")", "gridRef");
+      this.precision = (Precision)Math.Pow(10, 5 - (length / 2));
+      this.easting =
+          int.Parse(gridRef.Substring(begin, length / 2)) * (int)this.precision;
+      this.northing = int.Parse(gridRef.Substring(begin + length / 2)) * (int)this.precision;
     }
 
     const int LETTER_A = 0;   /* ARRAY INDEX FOR LETTER A               */

@@ -96,5 +96,15 @@ namespace DotNetCoords
     {
       return val * (180 / Math.PI);
     }
+
+    internal static bool IsUpperLetter(char c)
+    {
+        return c >= 'A' && c <= 'Z';
+    }
+
+    internal static bool IsDigit(char c)
+    {
+        return c >= '0' && c <= '9';
+    }
   }
 }
